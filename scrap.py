@@ -2,7 +2,8 @@ from selenium import webdriver
 
 from bs4 import BeautifulSoup as bs4
 import re
-from urllib.request import urlopen
+from urllib2 import urlopen
+
 import json
 from pandas.io.json import json_normalize
 import pandas as pd
@@ -10,7 +11,7 @@ import numpy as np
 
 
 username='pickuplimes'
-browser = webdriver.Chrome('/path/to/chromedriver')
+browser = webdriver.Chrome('./chromedriver')
 browser.get('https://www.instagram.com/'+username+'/?hl=en')
 Pagelength = browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
