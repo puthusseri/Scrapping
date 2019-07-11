@@ -10,10 +10,13 @@ import os
 import requests
 
 username=raw_input("Enter the username of the profile you need : ")
+
+# The path for the Browser was specified , I used the chrome driver for the linux
 browser = webdriver.Chrome('./chromedriver')
 browser.get('https://www.instagram.com/'+username)
 Pagelength = browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
+# Finding all the posts in specified user
 links=[]
 source = browser.page_source
 data=bs4(source, 'html.parser')
@@ -23,6 +26,7 @@ for link in script.findAll('a'):
     if re.match("/p", link.get('href')):
         links.append('https://www.instagram.com'+link.get('href'))
 
+# For each post we scrap the image and store in a dataframe
 result=pd.DataFrame()
 for i in range(len(links)):
     page = urlopen(links[i]).read()
@@ -41,6 +45,7 @@ for i in range(len(links)):
 result = result.drop_duplicates(subset = 'shortcode')
 result.index = range(len(result.index))
 
+# Save image as an jpeg image file
 
 for i in range(len(result)):
     r = requests.get(result['display_url'][i])
