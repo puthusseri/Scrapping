@@ -10,9 +10,9 @@ import pandas as pd
 import numpy as np
 
 
-username='anjuaanand_'
+username='sunithadevadas'
 browser = webdriver.Chrome('./chromedriver')
-browser.get('https://www.instagram.com/'+username+'/?hl=en')
+browser.get('https://www.instagram.com/'+username)
 Pagelength = browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 links=[]
@@ -23,27 +23,6 @@ script = body.find('span')
 for link in script.findAll('a'):
      if re.match("/p", link.get('href')):
         links.append('https://www.instagram.com'+link.get('href'))
-
-
-
-
-Pagelength = browser.execute_script("window.scrollTo(0, document.body.scrollHeight/1.5);")
-links=[]
-source = browser.page_source
-data=bs4(source, 'html.parser')
-body = data.find('body')
-script = body.find('span')
-for link in script.findAll('a'):
-     if re.match("/p", link.get('href')):
-         links.append('https://www.instagram.com'+link.get('href'))
-#sleep time is required. If you don't use this Instagram may interrupt the script and doesn't scroll through pagestime.sleep(5) Pagelength = browser.execute_script("window.scrollTo(document.body.scrollHeight/1.5, document.body.scrollHeight/3.0);")source = browser.page_source
-data=bs4(source, 'html.parser')
-body = data.find('body')
-script = body.find('span')
-for link in script.findAll('a'):
-     if re.match("/p", link.get('href')):
-         links.append('https://www.instagram.com'+link.get('href'))
-
 
 result=pd.DataFrame()
 for i in range(len(links)):
@@ -77,7 +56,7 @@ result.index = range(len(result.index))
 import os
 import requests
 result.index = range(len(result.index))
-directory="./a"
+directory="a"
 for i in range(len(result)):
     r = requests.get(result['display_url'][i])
     with open(directory+result['shortcode'][i]+".jpg", 'wb') as f:
