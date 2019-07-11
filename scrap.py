@@ -1,13 +1,15 @@
-from selenium import webdriver
-from bs4 import BeautifulSoup as bs4
+import os
 import re
-from urllib2 import urlopen
+import requests
 import json
-from pandas.io.json import json_normalize
 import pandas as pd
 import numpy as np
-import os
-import requests
+from selenium import webdriver
+from bs4 import BeautifulSoup as bs4
+from urllib2 import urlopen
+from pandas.io.json import json_normalize
+
+
 
 username=raw_input("Enter the username of the profile you need : ")
 
