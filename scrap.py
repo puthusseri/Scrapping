@@ -1,16 +1,14 @@
 from selenium import webdriver
-
 from bs4 import BeautifulSoup as bs4
 import re
 from urllib2 import urlopen
-
 import json
 from pandas.io.json import json_normalize
 import pandas as pd
 import numpy as np
 
 
-username='sunithadevadas'
+username=raw_input("Enter the username of the profile you need : ")
 browser = webdriver.Chrome('./chromedriver')
 browser.get('https://www.instagram.com/'+username)
 Pagelength = browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
