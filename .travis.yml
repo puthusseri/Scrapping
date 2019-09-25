@@ -1,0 +1,14 @@
+language: python
+python:
+  - "3.6"      # current default Python on Travis CI
+  - "nightly"  # nightly build
+# command to install dependencies
+install:
+  - pip install selenium
+  - pip install bs4
+  - pip install pandas
+  - pip install numpy
+  - pip install requests
+# command to run tests
+script:
+  - pytest
